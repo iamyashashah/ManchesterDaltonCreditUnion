@@ -53,7 +53,7 @@ public class ProcessTransaction {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		String qString = "Select t from Mantransaction t where t.manaccount.accountid = :accountid";
 		TypedQuery<Mantransaction> q = em.createQuery(qString, model.Mantransaction.class);
-		q.setParameter("accountud", _accountid);
+		q.setParameter("accountid", _accountid);
 
 		List<Mantransaction> translist = null;
 
