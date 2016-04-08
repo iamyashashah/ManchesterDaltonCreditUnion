@@ -38,7 +38,7 @@
     <br>
     <form action="UserServlet" method="post">
     <p>
-    <p>Create new user</p>
+    <p>add new user</p>
     <label for="username">username:</label>
                 <input id="username" name="username" value="${param.username}"><br>
                 <label for="username">password:</label>

@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Manuser;
-
+import model.ProcessToDo;
+import model.Todo;
 import processor.ProcessUser;
 
 /**
@@ -43,8 +44,8 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		ProcessUser processuser = new ProcessUser();
-		
+		//ProcessUser processuser = new ProcessUser(); //might use in future
+
 		//login user account
 		if (request.getParameter("click").equals("1")) {
 
@@ -59,7 +60,7 @@ public class UserServlet extends HttpServlet {
 				request.getRequestDispatcher("/error.jsp").forward(request, response);
 			}
 
-			long userid = processuser.userLogin(username,password); //checking for user
+			long userid = ProcessUser.userLogin(username,password).getUserid(); //checking for user
 
 			if (userid == 0) {
 
@@ -72,7 +73,7 @@ public class UserServlet extends HttpServlet {
 
 				long users = 0L;
 
-				users = processuser.userLogin(username,password); //getting the user and assigning the user
+				users = ProcessUser.userLogin(username,password).getUserid(); //getting the user and assigning the user
 
 				if (users != 0)
 				{
@@ -81,15 +82,22 @@ public class UserServlet extends HttpServlet {
 					session.setAttribute("userid", userid);
 					session.setAttribute("username", users);
 				}
+				
+				List<Manaccount> account = null;
+
+	            account = ProcessToDo.getListById(userid);
+
+	            session.setAttribute("userid", userid);
+	            session.setAttribute("accountlist", account);
 				request.getRequestDispatcher("/AccountPage.jsp").forward(request, response);
 
 			}
 
 		}
-		
-		//add user account
-		if (request.getParameter("click").equals("2")) {
 
+		//add user account
+
+		else if (request.getParameter("click").equals("2")) {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			if (username == null || username.isEmpty()|| password == null || password.isEmpty())
@@ -99,8 +107,15 @@ public class UserServlet extends HttpServlet {
 				request.setAttribute("error", error);
 				request.getRequestDispatcher("/error.jsp").forward(request, response);
 			}
+			else{
 
+				ProcessUser.addUser(username, password);
+				System.out.println("user = " + username);
+
+			}
 		}
+		
+		
 
 	}
 }
