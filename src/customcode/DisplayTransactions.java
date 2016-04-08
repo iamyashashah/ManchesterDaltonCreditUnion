@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Mantransaction;
+import processor.ProcessTransaction;
+
 
 /**
  * Servlet implementation class DisplayTransactions
@@ -58,7 +61,7 @@ public class DisplayTransactions extends HttpServlet {
 			trans = ProcessTransaction.getAllTransactions(accountid);
 
 			// session.setAttribute("studentid", studentid);
-			session.setAttribute("products", products);
+			session.setAttribute("tranaction", trans);
 			request.getRequestDispatcher("/productlist.jsp").forward(request, response);
 
 		}

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Manaccount;
+import processor.ProcessAccount;
+import processor.ProcessTransaction;
 
 /**
  * Servlet implementation class AccountDetails
@@ -55,9 +57,9 @@ public class AccountDetails extends HttpServlet {
 			long accountid = Long.parseLong((String) session.getAttribute("accountid"));
 
 			// Studentgrade st = null;
-			List<Manaccount> accounts = null;
+			List<Manaccount> accounts ;
 
-			accounts = ProcessAccount.getAccountById(accountid);
+			accounts=ProcessAccount.getAccounts(accountid);
 			double balance = ProcessTransaction.getBalance(accountid);
 
 			//

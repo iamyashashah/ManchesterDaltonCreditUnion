@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Manaccount;
 import model.Manuser;
 import model.ProcessToDo;
 import model.Todo;
+import processor.ProcessAccount;
 import processor.ProcessUser;
 
 /**
@@ -85,7 +87,7 @@ public class UserServlet extends HttpServlet {
 				
 				List<Manaccount> account = null;
 
-	            account = ProcessToDo.getListById(userid);
+	            account = ProcessAccount.getAccounts(userid);
 
 	            session.setAttribute("userid", userid);
 	            session.setAttribute("accountlist", account);
