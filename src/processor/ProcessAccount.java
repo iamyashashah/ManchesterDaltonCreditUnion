@@ -17,7 +17,7 @@ public class ProcessAccount {
 	public ProcessAccount(){}
 	public static List<Manaccount> getAccounts(long userid){
 		EntityManager em=DBUtil.getEmFactory().createEntityManager();
-		String qString="SELECT a FROM Manaccount a where a.userid = :userid";
+		String qString="SELECT a FROM Manaccount a where a.manuser.userid = :userid";
 		TypedQuery<Manaccount> q=em.createQuery(qString, Manaccount.class);
 		q.setParameter("userid", userid);
 		List<Manaccount> accounts=null;
