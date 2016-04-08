@@ -63,7 +63,7 @@ public class AccountDetails extends HttpServlet {
 			// Studentgrade st = null;
 			
 
-			accounts=ProcessAccount.getAccounts(accountid);
+			accounts=(List<Manaccount>) ProcessAccount.getAccountById(accountid);
 			double balance = ProcessTransaction.getBalance(accountid);
 
 			
