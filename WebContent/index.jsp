@@ -31,23 +31,10 @@
                 <input type="submit">
         </p>
     </form>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <form action="UserServlet" method="post">
-    <p>
-    <p>add new user</p>
-    <label for="username">username:</label>
-                <input id="username" name="username" value="${param.username}"><br>
-                <label for="username">password:</label>
-                <input id="password" name="password" value="${param.password}">
-                <input type="hidden" name="click" value="2">
-               <br>
-                <input type="submit">
-                 </p>
-    </form>
+   
+   <td>
+    <a href="newuser.jsp"> create new user </a>
+    </td>
    
 </body>
 </html>

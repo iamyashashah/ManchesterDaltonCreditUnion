@@ -113,7 +113,8 @@ public class UserServlet extends HttpServlet {
 
 				ProcessUser.addUser(username, password);
 				System.out.println("user = " + username);
-
+				
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			}
 		}
 		

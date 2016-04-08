@@ -56,13 +56,17 @@ public class AccountDetails extends HttpServlet {
 
 			long accountid = Long.parseLong((String) session.getAttribute("accountid"));
 
+			
+			List<Manaccount> accounts = null;
+
+
 			// Studentgrade st = null;
-			List<Manaccount> accounts ;
+			
 
 			accounts=ProcessAccount.getAccounts(accountid);
 			double balance = ProcessTransaction.getBalance(accountid);
 
-			//
+			
 			session.setAttribute("accountdetails", accounts);
 			session.setAttribute("balance", balance);
 
