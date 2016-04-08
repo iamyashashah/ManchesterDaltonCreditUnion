@@ -48,38 +48,39 @@ th {
 				<td><c:out value="${item.accounttype }" /></td></tr>
             <tr> 
                 <td>Balance</td>
-				<td><c:out value="${item.description }" /></td></tr>
-			<tr>	
-				<td>Product Price</td>
-				<td><c:out value="${item.price }" /></td>
-			</tr>
+				<td><c:out value="${balance }" /></td></tr>
+			
 		</c:forEach>
 	</table>
+	
+<h3>Would you like to enter a transaction?</h3>
 
-
-	<form action="samazonservlet" method="post">
+	<form action="AccountDetails" method="post">
 		<p>
 			<br />
-		<h3>Interested?</h3>
+		<h3>Deposit</h3>
 	<%-- 	<input type="number" id="number" name="number" value="${param.number}">  --%>
 		
-		<br /> <input type="hidden" id="productcode" name="cartproductcode" value="${cartproductcode}"> 
-		<input type="hidden" name="option" value="3"> 
-		<input type="submit" value="Add to shopping cart">
+		<br /> 
+		<input type="number" id="depamount" name="depamount" value="${depamount}">
+		<input type="hidden" name="option" value="deposit"> 
+		<input type="submit" value="Deposit">
 		</p>
 	</form>
-	<form action="samazonservlet" method="post">
+	<form action="AccountDetails" method="post">
 		<p>
 			<br />
-		<h3>See Your Shopping Cart</h3>
-		<br /> <input type="hidden" name="option" value="4">  
-		<input type="submit" value="Shopping Cart">
+		<h3>Withdrawal</h3>
+		<br>
+		<input type="number" id="withamount" name="withamount" value="${withamount}">
+		<br /> <input type="hidden" name="option" value="withdrawal">  
+		<input type="submit" value="Withdrawal">
 		</p>
 	</form>
 	
-    <form action="samazonservlet" method="post">	
+    <form action="AccountDetails" method="post">	
 		<input type="hidden" name="option" value="1"> 
-		<input type="submit" value="Go back to product list">
+		<input type="submit" value="Go back to Account list">
 	</form>
 
 

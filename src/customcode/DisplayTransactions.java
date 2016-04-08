@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Product;
+import model.Mantransaction;
+import processor.ProcessTransaction;
 
 /**
  * Servlet implementation class DisplayTransactions
@@ -54,13 +55,14 @@ public class DisplayTransactions extends HttpServlet {
 			long accountid = (long) session.getAttribute("accountid");
 	//		long accountid = Long.parseLong( session.getAttribute("accountid"));
 			
-			List<Mantransaction> trans = null;
+			List<Mantransaction> translist = null;
 
-			trans = ProcessTransaction.getAllTransactions(accountid);
+			translist = ProcessTransaction.getTransListById(accountid);
 
 			// session.setAttribute("studentid", studentid);
-			session.setAttribute("products", products);
-			request.getRequestDispatcher("/productlist.jsp").forward(request, response);
+			
+			session.setAttribute("translist", translist);
+			request.getRequestDispatcher("/translist.jsp").forward(request, response);
 
 		}
 		
