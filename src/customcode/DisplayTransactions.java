@@ -62,12 +62,11 @@ public class DisplayTransactions extends HttpServlet {
 
 			// session.setAttribute("studentid", studentid);
 			
+			
 			session.setAttribute("translist", translist);
 			request.getRequestDispatcher("/translist.jsp").forward(request, response);
 			
-			request.getRequestDispatcher("/productlist.jsp").forward(request, response);
-
-
+			
 		}
 		
 		
