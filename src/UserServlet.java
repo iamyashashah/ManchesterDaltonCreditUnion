@@ -20,14 +20,14 @@ import processor.ProcessUser;
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public UserServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,47 +42,65 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
+		ProcessUser processuser = new ProcessUser();
+		
+		//login user account
+		if (request.getParameter("click").equals("1")) {
 
-	        if (request.getParameter("click").equals("1")) {
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			System.out.println("user = " + username);
+			if (username == null || username.isEmpty()|| password == null || password.isEmpty())
+			{
+				//System.out.println("userid for " + username + " not found");
+				String error = ("Please enter valid username and password");
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/error.jsp").forward(request, response);
+			}
 
-	            String username = request.getParameter("username");
-	            String password = request.getParameter("password");
-	            System.out.println("user = " + username);
-	            if (username == null || username.isEmpty()|| password == null || password.isEmpty())
-	            {
-	            	//System.out.println("userid for " + username + " not found");
-	                String error = ("Please enter valid username and password");
-	                request.setAttribute("error", error);
-	                request.getRequestDispatcher("/error.jsp").forward(request, response);
-	            }
-	            long userid = ProcessUser.userLogin(username,password); //checking for user
-	            
-	            if (userid == 0) {
+			long userid = processuser.userLogin(username,password); //checking for user
 
-	                System.out.println("userid for " + username + " not found");
-	                String error = ("userid for " + username + " not found");
-	                request.setAttribute("error", error);
-	                request.getRequestDispatcher("/error.jsp").forward(request, response);
-	            }
-	            else {
+			if (userid == 0) {
 
-	               Manuser users = null;
+				System.out.println("userid for " + username + " not found");
+				String error = ("userid for " + username + " not found");
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/error.jsp").forward(request, response);
+			}
+			else {
 
-	                users = ProcessUser.userLogin(username,password); //getting the user and assigning the user
-	             
-	                if (users != null)
-	                {
-	                	
-	                session.setAttribute("username", username);
-	                session.setAttribute("userid", userid);
-	                session.setAttribute("username", users);
-	                }
-	                request.getRequestDispatcher("/AccountPage.jsp").forward(request, response);
+				long users = 0L;
 
-	            }
+				users = processuser.userLogin(username,password); //getting the user and assigning the user
 
-	        }
+				if (users != 0)
+				{
+
+					session.setAttribute("username", username);
+					session.setAttribute("userid", userid);
+					session.setAttribute("username", users);
+				}
+				request.getRequestDispatcher("/AccountPage.jsp").forward(request, response);
+
+			}
+
+		}
+		
+		//add user account
+		if (request.getParameter("click").equals("2")) {
+
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			if (username == null || username.isEmpty()|| password == null || password.isEmpty())
+			{
+				//System.out.println("userid for " + username + " not found");
+				String error = ("Please enter valid username and password");
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/error.jsp").forward(request, response);
+			}
+
+		}
+
 	}
-
 }
