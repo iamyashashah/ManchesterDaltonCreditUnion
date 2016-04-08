@@ -60,7 +60,7 @@ public class UserServlet extends HttpServlet {
 				String error = ("Please enter valid username and password");
 				request.setAttribute("error", error);
 				request.getRequestDispatcher("/error.jsp").forward(request, response);
-			}else{
+			}
 
 			long userid = ProcessUser.userLogin(username,password).getUserid(); //checking for user
 
@@ -92,9 +92,9 @@ public class UserServlet extends HttpServlet {
 	            session.setAttribute("userid", userid);
 	            session.setAttribute("accountlist", account);
 				request.getRequestDispatcher("/AccountPage.jsp").forward(request, response);
-			
+
 			}
-			}
+
 		}
 
 		//add user account
