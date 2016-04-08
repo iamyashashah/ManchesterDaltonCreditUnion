@@ -18,7 +18,7 @@ public class Mantransaction implements Serializable {
 	@Id
 	private long transid;
 
-	private BigDecimal amount;
+	private double amount;
 
 	@Temporal(TemporalType.DATE)
 	private Date transdate;
@@ -41,11 +41,11 @@ public class Mantransaction implements Serializable {
 		this.transid = transid;
 	}
 
-	public BigDecimal getAmount() {
+	public double getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
