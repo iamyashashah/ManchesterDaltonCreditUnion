@@ -14,9 +14,14 @@
 <title>Dalton Bank User login Page</title>
 </head>
 <body>
-<h2>Welcome to Manchester Dalton Credit Union</h2>
+<h1>Welcome to Manchester Dalton Credit Union</h1>
+ 
+    <h3>create new user or login to existing user </h3>
+    
     <form action="UserServlet" method="post">
         <p>
+        <p>Login user</p>
+            
             <label for="username">username:</label>
                 <input id="username" name="username" value="${param.username}"><br>
                 <label for="username">password:</label>
@@ -26,5 +31,23 @@
                 <input type="submit">
         </p>
     </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form action="UserServlet" method="post">
+    <p>
+    <p>Create new user</p>
+    <label for="username">username:</label>
+                <input id="username" name="username" value="${param.username}"><br>
+                <label for="username">password:</label>
+                <input id="password" name="password" value="${param.password}">
+                <input type="hidden" name="click" value="2">
+               <br>
+                <input type="submit">
+                 </p>
+    </form>
+   
 </body>
 </html>
