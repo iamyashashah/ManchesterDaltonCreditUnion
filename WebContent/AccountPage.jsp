@@ -15,9 +15,61 @@
 <title>Account Page</title>
 </head>
 <body>
-<table style="width: 100%">
-        
-       
+<form action="AccountServlet" method="post">
 
+<table style="width: 100%">
+         
+      <p>
+        <c:forEach var="item" items="${accountlist}">
+            <tr>
+                <td><c:out value="${item.Accountid}" /></td>
+                <td><c:out input type="radio" value="${item.Accounttype }" /></td>
+            </tr>
+        </c:forEach>
+        <input type="hidden" name="click" value="${item.Accountid}">
+               <br>
+                <input type="submit">
+                </p>  
+                
+    </table>
+    
+    </form> 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form action="AccountServlet" method="post">
+   
+    <p>add new account</p>
+     <p>
+    <label for="checking">Checking</label>
+    <input type="radio" name="Account" id= "checking" value="checking">
+            <BR>
+            <label for="saving">Saving</label>
+            <INPUT type="radio" name="Account" id= "saving" value="saving">
+            <BR>
+           <input type="hidden" name="click" value="1">
+               <br>
+                <input type="submit">
+                 </p> 
+            
+    </form>
+     <br>
+    <br>
+    <br>
+    
+<form action="AccountServlet" method="post">
+    
+    <p>close existing account</p>
+    <p>
+    <label for="AccountId">AccountId:</label>
+                <input id="AccountId" name="AccountId" value="${param.AccountId}"><br>
+           <input type="hidden" name="click" value="2">
+               <br>
+                <input type="submit" name="closeAccount">
+                 </p> 
+            
+    </form>
 </body>
 </html>

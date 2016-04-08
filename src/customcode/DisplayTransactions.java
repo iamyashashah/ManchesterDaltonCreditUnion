@@ -12,6 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import model.Mantransaction;
 import processor.ProcessTransaction;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 351003864fa1f1153adc2c7dd86a0ab513e7085a
 
 /**
  * Servlet implementation class DisplayTransactions
@@ -60,9 +64,14 @@ public class DisplayTransactions extends HttpServlet {
 			translist = ProcessTransaction.getTransListById(accountid);
 
 			// session.setAttribute("studentid", studentid);
+<<<<<<< HEAD
 			
 			session.setAttribute("translist", translist);
 			request.getRequestDispatcher("/translist.jsp").forward(request, response);
+=======
+			session.setAttribute("tranaction", trans);
+			request.getRequestDispatcher("/productlist.jsp").forward(request, response);
+>>>>>>> 351003864fa1f1153adc2c7dd86a0ab513e7085a
 
 		}
 		
